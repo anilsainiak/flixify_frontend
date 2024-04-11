@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './editProfile.scss';
+import { useLayoutEffect } from 'react';
+import { Link,useLocation } from 'react-router-dom'
+import { ArrowBackOutlined } from '@mui/icons-material';
 const EditProfile = () => {
-  const [user,setUser] = useState(null);
-  
-  useEffect(()=>{
-    setUser(JSON.parse(localStorage.getItem('user')));
-  },[]);
-  // console.log(user);
+  const location = useLocation();
+  const user = location.state.user;
   return (
     <div className="editProfile">
         <div className="container">
+        <Link to="/">
+
+          <div className="back">
+              <ArrowBackOutlined className='arrowIcon' />
+              Home
+          </div>
+          </Link>
             <h1>Edit Profile</h1>
             <div className="divider"></div>
 

@@ -8,6 +8,21 @@
         height: 90vh;
         max-width: 100%;
         margin: 0 auto;
+
+        .back{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            cursor: pointer;
+            z-index: 2;
+            .arrowIcon{
+                margin-right: 8px;
+            }
+        }
+
         .divider{
             border-bottom: 1px solid rgb(91, 90, 90);
         }

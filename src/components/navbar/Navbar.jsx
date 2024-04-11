@@ -4,9 +4,15 @@ import { ArrowDropDown, ArrowDropDownCircleOutlined, Notifications, Search } fro
 import {Link} from "react-router-dom";
 import { logoutStart } from '../../context/authContext/apiCalls';
 import { AuthContext } from '../../context/authContext/AuthContext';
+import { useEffect } from 'react';
 const Navbar = () => {
   const [isScrolled,setIsScrolled]=useState(false);
   const {dispatch} = useContext(AuthContext);
+  const [profilePic,setProfilePic]=useState(null);
+
+  useEffect(()=>{
+    setProfilePic((JSON.parse(localStorage.getItem('user'))).profilePic);
+  },[])
   window.onscroll=()=>{
     setIsScrolled(window.pageYOffset===0?false:true);
     return ()=>(window.onscroll=null);
@@ -39,10 +45,12 @@ const Navbar = () => {
               <Search className='icon'/>
               <span>KID</span>
               <Notifications className='icon' />
-              <img
-            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              <Link to="/editProfile" state={{user:JSON.parse(localStorage.getItem('user'))}}>
+              <img 
+            src={profilePic!=="" ? profilePic : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/768px-Windows_10_Default_Profile_Picture.svg.png?20221210150350"}
             alt=""
           />
+              </Link>
               <div className="profile">
                     <ArrowDropDown className='icon'/>
                     <div className="options">
